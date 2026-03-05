@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicole's Personal Websites · purple/black/pink</title>
+    <!-- font & icons (no scissors) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* RESET & BASE — purple, black, pink palette */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a0f1e;  /* deep dark purple-black */
+            font-family: 'Inter', sans-serif;
+            color: #f3e5f5;       /* soft pinkish white */
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        /* main container — black with purple undertones, pink accents */
+        .board {
+            max-width: 1000px;
+            width: 100%;
+            background: #2a1a2e;        /* dark purple-black */
+            backdrop-filter: blur(2px);
+            border-radius: 3rem 1rem 3rem 1rem;
+            padding: 2rem 2.5rem;
+            box-shadow: 15px 15px 0 #4a2b4a,   /* medium purple shadow */
+                        0 0 0 2px #ffb6d9,      /* hot pink border */
+                        0 20px 30px -10px #00000080;
+            border: 2px solid #ff99cc;
+        }
+
+        /* navigation — pink & purple */
+        .nav-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            justify-content: center;
+            margin: 2rem 0 2.5rem 0;
+            background: #3d2640;          /* deep purple */
+            padding: 1.2rem 1.8rem;
+            border-radius: 80px 12px 80px 12px;
+            border: 2px solid #ffb0cf;
+            box-shadow: inset 0 1px 5px #b86b9f, 6px 6px 0 #572b5e;
+        }
+
+        .nav-item {
+            font-size: 1.7rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            background: #ffd9e8;          /* soft pink */
+            padding: 0.4rem 1.6rem 0.4rem 1.6rem;
+            border-radius: 40px 8px 40px 8px;
+            border: 2px solid #ffb3d0;
+            box-shadow: 5px 5px 0 #8f4f8f;  /* purple */
+            transition: all 0.1s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #2d0f2b;                /* near black with purple */
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item i {
+            font-size: 1.8rem;
+            color: #a52d6d;    /* deep pink */
+        }
+
+        .nav-item:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #ad5ead;
+            background: #ffe4f0;
+        }
+
+        .nav-item.active {
+            background: #d9b0d0;
+            box-shadow: inset 3px 3px 0 #783f78;
+            border-color: #ffb6d9;
+            pointer-events: none;
+            color: #1e0a1c;
+        }
+
+        /* page content card — purple/black base, pink cut */
+        .page-card {
+            background: #321f36;           /* dark purple-black */
+            padding: 2.2rem 2rem;
+            border-radius: 40px 8px 40px 8px;
+            box-shadow: 12px 12px 0 #682f68, 0 5px 20px #0000004d;
+            border: 2px solid #ffa6cc;
+            transform: rotate(-0.2deg);
+            margin-bottom: 2rem;
+            color: #ffe6f0;
+        }
+
+        .page-card h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+            border-bottom: 5px solid #ffb0cf;
+            display: inline-block;
+            padding: 0.2rem 1.8rem 0.2rem 1.2rem;
+            background: #4f2652;            /* purple */
+            border-radius: 0 0 20px 0;
+            letter-spacing: -0.5px;
+            color: #ffd0e0;
+            text-shadow: 2px 2px 0 #2f142f;
+        }
+
+        .page-content {
+            font-size: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        /* ABOUT ME (trisha's details) — pinkish highlights */
+        .about-me p {
+            background: #3f2643;            /* deep purple */
+            padding: 0.9rem 1.5rem;
+            border-radius: 30px 6px 30px 6px;
+            margin-bottom: 0.7rem;
+            border-left: 6px solid #ff99cc;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #ffdfef;
+        }
+        .about-me i {
+            width: 2rem;
+            color: #ffadd6;
+        }
+
+        /* FAVORITE FOOD — chicken curry + ingredients */
+        .food-list-page {
+            list-style: none;
+            display: grid;
+            gap: 0.8rem;
+        }
+        .food-list-page li {
+            background: #3d2542;            /* dark purple */
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px 8px 60px 8px;
+            font-size: 1.4rem;
+            font-weight: 450;
+            border: 1px dashed #ff99cc;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #ffe4f2;
+        }
+        .food-list-page i {
+            font-size: 2rem;
+            width: 2.4rem;
+            color: #ff8ec7;
+        }
+
+        /* ingredient sub-list (pink & purple) */
+        .ingredient-note {
+            margin-top: 1rem;
+            background: #2e1b33;
+            padding: 1.2rem 1.8rem;
+            border-radius: 40px 8px 40px 8px;
+            border: 2px solid #ff99cc;
+            box-shadow: inset 0 0 0 2px #572757;
+        }
+        .ingredient-note p {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #ffc2dc;
+            margin-bottom: 0.8rem;
+        }
+        .ingredient-note ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            list-style: none;
+        }
+        .ingredient-note li {
+            background: #4f2b55;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px 4px 40px 4px;
+            font-size: 1.2rem;
+            border: 1px solid #ffb6d9;
+            color: #ffddea;
+        }
+        .ingredient-note i {
+            margin-right: 0.5rem;
+            color: #ff80b5;
+        }
+
+        /* HOBBIES (listening to music, watching reels/movies) */
+        .hobby-block-simple {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .hobby-simple-item {
+            background: #3d2442;
+            padding: 1rem 1.8rem;
+            border-radius: 50px 8px 50px 8px;
+            font-size: 1.6rem;
+            font-weight: 500;
+            box-shadow: 6px 6px 0 #5f2d6b;
+            border: 2px solid #ff99cc;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #ffdbef;
+        }
+        .hobby-simple-item i {
+            font-size: 2rem;
+            color: #ff95c2;
+            width: 2.8rem;
+        }
+
+        /* CONTACTS — exactly as given */
+        .contact-grid-personal {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+        .contact-personal {
+            background: #39223e;
+            padding: 1rem 1.5rem;
+            border-radius: 30px 6px 30px 6px;
+            font-size: 1.3rem;
+            border: 2px solid #ffa6cc;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #ffe3f0;
+            word-break: break-word;
+        }
+        .contact-personal i {
+            font-size: 2rem;
+            width: 2.5rem;
+            color: #ffa7cf;
+        }
+
+        /* --- BIBLE VERSE SECTION (appears on every page) --- */
+        .verse-card {
+            margin-top: 2rem;
+            background: #2f1a33;           /* deep purple */
+            padding: 1.5rem 2rem;
+            border-radius: 40px 8px 40px 8px;
+            border: 2px solid #ff99cc;
+            box-shadow: 8px 8px 0 #5f2b63;
+            color: #ffd9ec;
+            font-size: 1.2rem;
+        }
+
+        .verse-card p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .verse-card i {
+            color: #ffadd6;
+            font-size: 1.6rem;
+            width: 2rem;
+            margin-top: 0.2rem;
+        }
+
+        .verse-card .verse-ref {
+            font-weight: 600;
+            color: #ffc0df;
+            margin-right: 8px;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #38203dbb;
+            padding: 1rem 2rem;
+            border-radius: 60px 8px 60px 8px;
+            border: 2px solid #ff99cc;
+            font-size: 1rem;
+            color: #ffd1e5;
+            backdrop-filter: blur(2px);
+        }
+
+        .breadcrumb {
+            background: #4d2a55;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px 4px 30px 4px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            border: 1px solid #ffadd5;
+            color: #ffd2ea;
+        }
+
+        /* page visibility */
+        .page {
+            display: none;
+        }
+        :target {
+            display: block !important;
+        }
+        body:not(:has(:target)) #about {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="board">
+        <!-- header — title only, no scissors -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <h1 style="font-size: 2.5rem; background: #411f47; padding:0.2rem 1.8rem; border-radius: 50px 6px 50px 6px; box-shadow: 5px 5px 0 #872b87; color:#ffcde5; border:2px solid #ffb0cf;">
+                Nicole's Personal Websites
+            </h1>
+            <span style="background:#522557; padding:0.5rem 1.4rem; border-radius: 40px 4px 40px 4px; border:2px solid #ff99cc;">
+                <!-- empty -->
+            </span>
+        </div>
+
+        <!-- navigation -->
+        <div class="nav-row">
+            <a class="nav-item" href="#about"><i class="fas fa-user"></i> ABOUT ME</a>
+            <a class="nav-item" href="#food"><i class="fas fa-utensils"></i> FAVORITE FOOD</a>
+            <a class="nav-item" href="#hobbies"><i class="fas fa-paint-brush"></i> HOBBIES</a>
+            <a class="nav-item" href="#contacts"><i class="fas fa-address-card"></i> CONTACTS</a>
+        </div>
+
+
+
+        <!-- ABOUT ME page -->
+        <div id="about" class="page page-card">
+            <h2><i class="fas fa-user-astronaut" style="margin-right: 15px;"></i> ABOUT ME</h2>
+            <div class="page-content about-me">
+                <p><i class="fas fa-signature"></i> Trisha Nicole T. Zagala</p>
+                <p><i class="fas fa-birthday-cake"></i> 18 y/o</p>
+                <p><i class="fas fa-map-pin"></i> Live in San Mateo, Rizal</p>
+                <p><i class="fas fa-graduation-cap"></i> Bachelor of Elementary Education</p>
+                <p><i class="fas fa-school"></i> San Mateo Municipal College</p>
+               
+            </div>
+            <div class="breadcrumb"><i class="fa-regular fa-eye"></i> you're on ABOUT ME</div>
+
+            <!-- BIBLE VERSES (displayed on every page) -->
+            <div class="verse-card">
+                <p><i class="fas fa-bible"></i> <span class="verse-ref">Proverbs 3:5–6</span> “Trust in the Lord with all your heart… and He will make your paths straight.”</p>
+                <p><i class="fas fa-pray"></i> <span class="verse-ref">Proverbs 16:3</span> “Commit to the Lord whatever you do, and He will establish your plans.”</p>
+            </div>
+        </div>
+
+        <!-- FAVORITE FOOD page -->
+        <div id="food" class="page page-card">
+            <h2><i class="fas fa-utensils"></i> FAVORITE FOOD</h2>
+            <div class="page-content">
+                <ul class="food-list-page">
+                    <li><i class="fas fa-drumstick-bite"></i> Chicken curry</li>
+                </ul>
+
+                <!-- INGREDIENTS section -->
+                <div class="ingredient-note">
+                    <p><i class="fas fa-mortar-pestle" style="color:#ff99cc;"></i> ✦ Chicken curry ingredients ✦</p>
+                    <ul>
+                        <li><i class="fas fa-drumstick"></i> 500g Chicken</li>
+                        <li><i class="fas fa-onion"></i> Onion, Garlic, Ginger</li>
+                        <li><i class="fas fa-pepper"></i> Curry Powder</li>
+                        <li><i class="fas fa-tint"></i> Coconut Milk</li>
+                        <li><i class="fas fa-carrot"></i> Potato & Carrot</li>
+                        <li><i class="fas fa-leaf"></i> Bay Leaves</li>
+                        <li><i class="fas fa-fire"></i> Salt & Pepper</li>
+                        <li><i class="fas fa-oil"></i> Cooking Oil</li>
+                    </ul>
+                    <p style="margin-top: 0.7rem; font-size:1rem; color: #ffbfdf;">✧ serve hot with rice ✧</p>
+                </div>
+
+                <div style="margin-top: 1.2rem; background:#572b5e; padding:0.8rem; border-radius:30px 4px 30px 4px; border:1px solid #ff99cc;">
+                    <i class="fa-regular fa-face-smile" style="color:#ffadd6;"></i> My ultimate comfort food!
+                </div>
+            </div>
+            <div class="breadcrumb"><i class="fa-regular fa-eye"></i> you're on FAVORITE FOOD</div>
+
+            <!-- BIBLE VERSES (displayed on every page) -->
+            <div class="verse-card">
+                <p><i class="fas fa-bible"></i> <span class="verse-ref">Proverbs 3:5–6</span> “Trust in the Lord with all your heart… and He will make your paths straight.”</p>
+                <p><i class="fas fa-pray"></i> <span class="verse-ref">Proverbs 16:3</span> “Commit to the Lord whatever you do, and He will establish your plans.”</p>
+            </div>
+        </div>
+
+        <!-- HOBBIES page -->
+        <div id="hobbies" class="page page-card">
+            <h2><i class="fas fa-paint-brush"></i> HOBBIES</h2>
+            <div class="page-content">
+                <div class="hobby-block-simple">
+                    <div class="hobby-simple-item"><i class="fas fa-headphones-alt"></i> Listening to music</div>
+                    <div class="hobby-simple-item"><i class="fas fa-film"></i> Watching reels / Movies</div>
+                </div>
+                <div style="margin-top: 1.5rem; background:#48234a; padding:0.7rem 1.5rem; border-radius: 50px 4px 50px 4px; font-size: 1.2rem; border:1px dashed #ff99cc;">
+                    <i class="fa-regular fa-face-smile-wink" style="color:#ffadcf;"></i> Always have my earphones 🎧
+                </div>
+            </div>
+            <div class="breadcrumb"><i class="fa-regular fa-eye"></i> you're on HOBBIES</div>
+
+            <!-- BIBLE VERSES (displayed on every page) -->
+            <div class="verse-card">
+                <p><i class="fas fa-bible"></i> <span class="verse-ref">Proverbs 3:5–6</span> “Trust in the Lord with all your heart… and He will make your paths straight.”</p>
+                <p><i class="fas fa-pray"></i> <span class="verse-ref">Proverbs 16:3</span> “Commit to the Lord whatever you do, and He will establish your plans.”</p>
+            </div>
+        </div>
+
+        <!-- CONTACTS page -->
+        <div id="contacts" class="page page-card">
+            <h2><i class="fas fa-address-card"></i> CONTACTS</h2>
+            <div class="page-content">
+                <div class="contact-grid-personal">
+                    <div class="contact-personal"><i class="fas fa-phone-alt"></i> 09635580153</div>
+                    <div class="contact-personal"><i class="fas fa-envelope"></i> trishanicolezagala5@gmail.com</div>
+                    <div class="contact-personal"><i class="fab fa-facebook"></i>  Nicole zagala</div>
+                    <div class="contact-personal"><i class="fab fa-instagram"></i>  nicolezagala</div>
+                </div>
+                <p style="margin-top:1.5rem; background:#572457; padding:0.7rem 1.5rem; border-radius: 30px 4px; border:2px solid #ff99cc;">
+                    <i class="fa-regular fa-paper-plane" style="color:#ffadd6;"></i> dm or text me anytime!
+                </p>
+            </div>
+            <div class="breadcrumb"><i class="fa-regular fa-eye"></i> you're on CONTACTS</div>
+
+            <!-- BIBLE VERSES (displayed on every page) -->
+            <div class="verse-card">
+                <p><i class="fas fa-bible"></i> <span class="verse-ref">Proverbs 3:5–6</span> “Trust in the Lord with all your heart… and He will make your paths straight.”</p>
+                <p><i class="fas fa-pray"></i> <span class="verse-ref">Proverbs 16:3</span> “Commit to the Lord whatever you do, and He will establish your plans.”</p>
+            </div>
+        </div>
+
+        <!-- footer (empty, no scissors) -->
+        <div class="footer-note">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- hash script -->
+    <script>
+        (function() {
+            function updateActive() {
+                const hash = window.location.hash || '#about';
+                document.querySelectorAll('.nav-item').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === hash) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('load', updateActive);
+            window.addEventListener('hashchange', updateActive);
+
+            if (!window.location.hash) {
+                window.location.hash = '#about';
+            } else {
+                const valid = ['#about', '#food', '#hobbies', '#contacts'];
+                if (!valid.includes(window.location.hash)) {
+                    window.location.hash = '#about';
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
